@@ -7,11 +7,11 @@ export default defineConfig(({ mode }) => ({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://jp-marketing.onrender.com/api',
         changeOrigin: true
       },
       '/uploads': {
-        target: 'http://localhost:5000',
+        target: 'https://jp-marketing.onrender.com/uploads',
         changeOrigin: true
       }
     }
