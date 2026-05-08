@@ -38,7 +38,7 @@ export default function ManageSitesPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-white font-display">Manage Sites / Portfolio</h1>
+        <h1 className="text-2xl font-bold font-display" style={{ color: 'var(--text-heading)' }}>Manage Sites / Portfolio</h1>
         <button onClick={openAdd} className="btn-gold text-sm !px-4 !py-2"><FaPlus className="mr-2" />Add Site</button>
       </div>
       <div className="glass-card overflow-hidden">
@@ -48,10 +48,10 @@ export default function ManageSitesPage() {
             <tbody>
               {sites.map(s => (
                 <tr key={s.id}>
-                  <td className="text-dark-400">{s.id}</td>
-                  <td className="text-white font-medium">{s.client_name}</td>
-                  <td className="text-dark-300">{s.location}</td>
-                  <td className="text-dark-400 text-sm">{s.completion_date ? new Date(s.completion_date).toLocaleDateString('en-IN') : '—'}</td>
+                  <td style={{ color: 'var(--text-muted)' }}>{s.id}</td>
+                  <td className="font-medium" style={{ color: 'var(--text-primary)' }}>{s.client_name}</td>
+                  <td style={{ color: 'var(--text-secondary)' }}>{s.location}</td>
+                  <td className="text-sm" style={{ color: 'var(--text-muted)' }}>{s.completion_date ? new Date(s.completion_date).toLocaleDateString('en-IN') : '—'}</td>
                   <td>
                     <div className="flex items-center gap-2">
                       <button onClick={() => openEdit(s)} className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center hover:bg-blue-500/20"><FaEdit className="text-xs" /></button>
@@ -60,8 +60,8 @@ export default function ManageSitesPage() {
                   </td>
                 </tr>
               ))}
-              {loading && <tr><td colSpan={5} className="text-center text-dark-400 py-8">Loading...</td></tr>}
-              {!loading && sites.length === 0 && <tr><td colSpan={5} className="text-center text-dark-400 py-8">No sites</td></tr>}
+              {loading && <tr><td colSpan={5} className="text-center py-8" style={{ color: 'var(--text-muted)' }}>Loading...</td></tr>}
+              {!loading && sites.length === 0 && <tr><td colSpan={5} className="text-center py-8" style={{ color: 'var(--text-muted)' }}>No sites</td></tr>}
             </tbody>
           </table>
         </div>
@@ -71,8 +71,8 @@ export default function ManageSitesPage() {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" onClick={() => setModal(false)}>
           <div className="glass-card w-full max-w-lg p-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-white text-lg font-bold font-display">{editing ? 'Edit' : 'Add'} Site</h2>
-              <button onClick={() => setModal(false)} className="text-dark-400 hover:text-white"><FaTimes /></button>
+              <h2 className="text-lg font-bold font-display" style={{ color: 'var(--text-heading)' }}>{editing ? 'Edit' : 'Add'} Site</h2>
+              <button onClick={() => setModal(false)} className="hover:text-gold-500 transition-colors" style={{ color: 'var(--text-muted)' }}><FaTimes /></button>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div><label className="form-label">Client Name *</label><input type="text" value={form.client_name} onChange={e => setForm({...form, client_name: e.target.value})} className="form-input" /></div>
@@ -81,7 +81,7 @@ export default function ManageSitesPage() {
               <div><label className="form-label">Completion Date</label><input type="date" value={form.completion_date} onChange={e => setForm({...form, completion_date: e.target.value})} className="form-input" /></div>
               <div><label className="form-label">Image</label><input type="file" accept="image/*" onChange={e => setImageFile(e.target.files[0])} className="form-input text-sm" /></div>
               <div className="flex gap-3 pt-2">
-                <button type="button" onClick={() => setModal(false)} className="flex-1 px-4 py-2.5 rounded-lg bg-dark-700 text-dark-200 hover:bg-dark-600 transition-colors text-sm">Cancel</button>
+                <button type="button" onClick={() => setModal(false)} className="flex-1 px-4 py-2.5 rounded-lg transition-colors text-sm" style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}>Cancel</button>
                 <button type="submit" className="flex-1 btn-gold text-sm !py-2.5">{editing ? 'Update' : 'Create'}</button>
               </div>
             </form>

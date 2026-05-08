@@ -19,7 +19,7 @@ export default function DashboardPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white font-display mb-6">Dashboard</h1>
+      <h1 className="text-2xl font-bold font-display mb-6" style={{ color: 'var(--text-heading)' }}>Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatsCard icon={FaTools} label="Total Services" value={stats?.totalServices ?? '—'} color="gold" />
         <StatsCard icon={FaMapMarkedAlt} label="Sites Visited" value={stats?.totalSites ?? '—'} color="blue" />
@@ -29,7 +29,7 @@ export default function DashboardPage() {
 
       <div className="glass-card overflow-hidden">
         <div className="px-5 py-4 border-b border-dark-700 flex items-center justify-between">
-          <h2 className="text-white font-semibold">Recent Work Requests</h2>
+          <h2 className="font-semibold" style={{ color: 'var(--text-heading)' }}>Recent Work Requests</h2>
         </div>
         <div className="overflow-x-auto">
           <table className="admin-table">
@@ -37,14 +37,14 @@ export default function DashboardPage() {
             <tbody>
               {recentRequests.map(r => (
                 <tr key={r.id}>
-                  <td className="text-white font-medium">{r.name}</td>
-                  <td className="text-dark-300">{r.mobile_no}</td>
-                  <td className="text-dark-300 max-w-[200px] truncate">{r.the_work}</td>
+                  <td className="font-medium" style={{ color: 'var(--text-primary)' }}>{r.name}</td>
+                  <td style={{ color: 'var(--text-secondary)' }}>{r.mobile_no}</td>
+                  <td className="max-w-[200px] truncate" style={{ color: 'var(--text-secondary)' }}>{r.the_work}</td>
                   <td>{statusBadge(r.status)}</td>
-                  <td className="text-dark-400 text-xs">{new Date(r.created_at).toLocaleDateString('en-IN')}</td>
+                  <td className="text-xs" style={{ color: 'var(--text-muted)' }}>{new Date(r.created_at).toLocaleDateString('en-IN')}</td>
                 </tr>
               ))}
-              {recentRequests.length === 0 && <tr><td colSpan={5} className="text-center text-dark-400 py-8">No requests yet</td></tr>}
+              {recentRequests.length === 0 && <tr><td colSpan={5} className="text-center py-8" style={{ color: 'var(--text-muted)' }}>No requests yet</td></tr>}
             </tbody>
           </table>
         </div>

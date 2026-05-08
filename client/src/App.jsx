@@ -21,7 +21,7 @@ import ManageRequestsPage from './pages/admin/ManageRequestsPage';
 
 function AdminLayout({ children }) {
   return (
-    <div className="min-h-screen bg-dark-900">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <AdminSidebar />
       <div className="lg:ml-64 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
         {children}

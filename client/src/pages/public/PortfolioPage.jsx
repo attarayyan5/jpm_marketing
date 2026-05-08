@@ -11,7 +11,7 @@ export default function PortfolioPage() {
   }, []);
 
   return (
-    <main className="pt-24 min-h-screen">
+    <main className="pt-24 min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <section className="section-container">
         <div className="gold-divider" />
         <h1 className="section-heading">Sites <span className="text-gold-gradient">Visited</span></h1>

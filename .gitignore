@@ -4,3 +4,9 @@ uploads/
 dist/
 .DS_Store
 *.log
+
+# Client env files (keep .env.example for reference)
+client/.env
+client/.env.production
+client/.env.local
+client/.env.*.local

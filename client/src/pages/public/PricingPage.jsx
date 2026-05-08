@@ -13,7 +13,7 @@ export default function PricingPage() {
   }, []);
 
   return (
-    <main className="pt-24 min-h-screen">
+    <main className="pt-24 min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <section className="section-container">
         <div className="gold-divider" />
         <h1 className="section-heading">Our <span className="text-gold-gradient">Pricing</span></h1>

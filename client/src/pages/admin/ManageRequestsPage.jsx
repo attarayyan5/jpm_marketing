@@ -34,19 +34,20 @@ export default function ManageRequestsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white font-display mb-6">Work Requests</h1>
+      <h1 className="text-2xl font-bold font-display mb-6" style={{ color: 'var(--text-heading)' }}>Work Requests</h1>
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1 max-w-xs">
-          <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-dark-400 text-sm" />
+          <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-muted)' }} />
           <input type="text" value={search} onChange={e => setSearch(e.target.value)} className="form-input !pl-10 text-sm" placeholder="Search requests..." />
         </div>
         <div className="flex items-center gap-2">
-          <FaFilter className="text-dark-400 text-sm" />
+          <FaFilter className="text-sm" style={{ color: 'var(--text-muted)' }} />
           {['all', 'Pending', 'Contacted', 'Completed'].map(s => (
             <button key={s} onClick={() => setFilter(s)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filter === s ? 'bg-gold-500/20 text-gold-500 border border-gold-500/30' : 'bg-dark-700 text-dark-300 hover:text-white border border-dark-600'}`}>
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filter === s ? 'bg-gold-500/20 text-gold-500 border border-gold-500/30' : 'border hover:text-gold-500'}`}
+              style={filter === s ? {} : { backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-secondary)', borderColor: 'var(--border-input)' }}>
               {s === 'all' ? 'All' : s}
             </button>
           ))}
@@ -61,15 +62,16 @@ export default function ManageRequestsPage() {
               {requests.map(r => (
                 <>
                   <tr key={r.id} className="cursor-pointer" onClick={() => setExpanded(expanded === r.id ? null : r.id)}>
-                    <td className="text-dark-400 w-8">{expanded === r.id ? <FaChevronUp className="text-xs" /> : <FaChevronDown className="text-xs" />}</td>
-                    <td className="text-white font-medium">{r.name}</td>
-                    <td className="text-dark-300">{r.mobile_no}</td>
-                    <td className="text-dark-300 max-w-[200px] truncate">{r.the_work}</td>
+                    <td className="w-8" style={{ color: 'var(--text-muted)' }}>{expanded === r.id ? <FaChevronUp className="text-xs" /> : <FaChevronDown className="text-xs" />}</td>
+                    <td className="font-medium" style={{ color: 'var(--text-primary)' }}>{r.name}</td>
+                    <td style={{ color: 'var(--text-secondary)' }}>{r.mobile_no}</td>
+                    <td className="max-w-[200px] truncate" style={{ color: 'var(--text-secondary)' }}>{r.the_work}</td>
                     <td>{statusBadge(r.status)}</td>
-                    <td className="text-dark-400 text-xs whitespace-nowrap">{new Date(r.created_at).toLocaleDateString('en-IN')}</td>
+                    <td className="text-xs whitespace-nowrap" style={{ color: 'var(--text-muted)' }}>{new Date(r.created_at).toLocaleDateString('en-IN')}</td>
                     <td onClick={e => e.stopPropagation()}>
                       <select value={r.status} onChange={e => updateStatus(r.id, e.target.value)}
-                        className="bg-dark-700 text-white text-xs rounded-lg px-2 py-1.5 border border-dark-600 outline-none">
+                        className="text-xs rounded-lg px-2 py-1.5 outline-none"
+                        style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', border: '1px solid var(--border-input)' }}>
                         <option value="Pending">Pending</option>
                         <option value="Contacted">Contacted</option>
                         <option value="Completed">Completed</option>
@@ -78,21 +80,21 @@ export default function ManageRequestsPage() {
                   </tr>
                   {expanded === r.id && (
                     <tr key={`${r.id}-detail`}>
-                      <td colSpan={7} className="!bg-dark-700/30 !border-b-0">
+                      <td colSpan={7} style={{ backgroundColor: 'var(--bg-secondary)', borderBottom: 'none' }}>
                         <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                          <div><span className="text-dark-400">Email:</span> <span className="text-white ml-2">{r.email || '—'}</span></div>
-                          <div><span className="text-dark-400">Mobile:</span> <span className="text-white ml-2">{r.mobile_no}</span></div>
-                          <div className="sm:col-span-2"><span className="text-dark-400">Address:</span> <span className="text-white ml-2">{r.address}</span></div>
-                          {r.map_link && <div className="sm:col-span-2"><span className="text-dark-400">Map:</span> <a href={r.map_link} target="_blank" rel="noopener noreferrer" className="text-gold-500 ml-2 hover:underline">{r.map_link}</a></div>}
-                          <div className="sm:col-span-2"><span className="text-dark-400">Work Description:</span><p className="text-white mt-1 leading-relaxed">{r.the_work}</p></div>
+                          <div><span style={{ color: 'var(--text-muted)' }}>Email:</span> <span className="ml-2" style={{ color: 'var(--text-primary)' }}>{r.email || '—'}</span></div>
+                          <div><span style={{ color: 'var(--text-muted)' }}>Mobile:</span> <span className="ml-2" style={{ color: 'var(--text-primary)' }}>{r.mobile_no}</span></div>
+                          <div className="sm:col-span-2"><span style={{ color: 'var(--text-muted)' }}>Address:</span> <span className="ml-2" style={{ color: 'var(--text-primary)' }}>{r.address}</span></div>
+                          {r.map_link && <div className="sm:col-span-2"><span style={{ color: 'var(--text-muted)' }}>Map:</span> <a href={r.map_link} target="_blank" rel="noopener noreferrer" className="text-gold-500 ml-2 hover:underline">{r.map_link}</a></div>}
+                          <div className="sm:col-span-2"><span style={{ color: 'var(--text-muted)' }}>Work Description:</span><p className="mt-1 leading-relaxed" style={{ color: 'var(--text-primary)' }}>{r.the_work}</p></div>
                         </div>
                       </td>
                     </tr>
                   )}
                 </>
               ))}
-              {loading && <tr><td colSpan={7} className="text-center text-dark-400 py-8">Loading...</td></tr>}
-              {!loading && requests.length === 0 && <tr><td colSpan={7} className="text-center text-dark-400 py-8">No requests found</td></tr>}
+              {loading && <tr><td colSpan={7} className="text-center py-8" style={{ color: 'var(--text-muted)' }}>Loading...</td></tr>}
+              {!loading && requests.length === 0 && <tr><td colSpan={7} className="text-center py-8" style={{ color: 'var(--text-muted)' }}>No requests found</td></tr>}
             </tbody>
           </table>
         </div>
